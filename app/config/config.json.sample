@@ -1,0 +1,27 @@
+##### Single target role example #####
+{
+    "webhook_url" : "https://discord.com/webhook-example-url",
+    "target_host": "google.com",
+    "mention_target": "<@&1234567898746"
+}
+
+
+##### Single target member example #####
+{
+    "webhook_url" : "https://discord.com/webhook-example-url",
+    "target_host": "google.com",
+    "mention_target": "<@12346567898746"
+}
+
+
+##### Mutli target exampled - roles and members #####
+{
+    "webhook_url" : "https://discord.com/webhook-example-url",
+    "target_host": "google.com",
+    "mention_target": [
+        "<@&12345678987654>",
+        "<@&12345678987456>",
+        "<@1234567898746>"
+    ]
+}
+

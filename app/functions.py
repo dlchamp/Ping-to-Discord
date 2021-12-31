@@ -45,7 +45,7 @@ def get_last_response():
         return f.read()
 
 
-def send_webhook(webhook_url, response, message, role):
+def send_webhook(webhook_url, response, message, mention_target):
     """
     Sends a simple embed to the target webhook url
     Embed will have a green color of target is online,
@@ -57,16 +57,17 @@ def send_webhook(webhook_url, response, message, role):
     else:
         status_color = "ffaa00"
 
-    webhook = DiscordWebhook(url=webhook_url, rate_limit_retry=True)
-    if role is None:
-        embed = DiscordEmbed(
-            title="Server Status", description=f"**{message}**", color=status_color
-        )
+    if isinstance(mention_target, str):
+        target = mention_target
+
+    elif isinstance(mention_target, list):
+        target = ', '.join(mention_target)
     else:
-        embed = DiscordEmbed(
-            title="Server Status",
-            description=f"{role}\n**{message}**",
-            color=status_color,
-        )
+        target = None
+
+    webhook = DiscordWebhook(
+        url=webhook_url, content=target, rate_limit_retry=True)
+    embed = DiscordEmbed(title="Server Status",
+                         description=f"**{message}**", color=status_color)
     webhook.add_embed(embed)
     webhook.execute()
