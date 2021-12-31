@@ -32,6 +32,8 @@ You could use 'google.com' or '8.8.8.8'
 No http:// or https:// necessary
 
 ### Adding an optional "Mention" role or member
+*Discord development mode must be enabled* - [See here for instructions](https://www.howtogeek.com/714348/how-to-enable-or-disable-developer-mode-on-discord/)
+
 Adding this will simply @mention a role, or even target member of your choice when the webhook is sent to the channel.
 You can also add more than one role, member, or a mixture of the two.
 Just put them in a list - Example `["<@&12345678987654>", "<@&12345678987456>", "<@1234567898746>"]`
@@ -44,7 +46,6 @@ Just put them in a list - Example `["<@&12345678987654>", "<@&12345678987456>", 
 
 
 **Get the target member**
-*Discord development mode must be enabled* - [See here for instructions](https://www.howtogeek.com/714348/how-to-enable-or-disable-developer-mode-on-discord/)
 1. Right-click on the target member and click "Copy ID" from the bottom of the context menu
 2. In the config.json add "<@memberid>" where member ID is the copied ID.
 Should look like `<@173105961442082816>`
@@ -57,7 +58,7 @@ Should look like `<@173105961442082816>`
     * Updated the readme to include configuration and setup information
     * Added a retry to failed ping - now will try up to 3 times if first attemped failed before reporting the status (if change) to Discord webhook
     * Added ability to mention 1 or more members/roles
-    * Added config examples in config.json.sample
+    * Added config examples in config.
 
 * 1.0
     * Initial commit.
