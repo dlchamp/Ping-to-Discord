@@ -1,4 +1,6 @@
 import platform
+import time
+import random
 import subprocess
 from discord_webhook import DiscordWebhook, DiscordEmbed
 
@@ -8,14 +10,23 @@ def ping(host):
     Pings the target and returns 1 if up, or 0 if not up
     """
     param = "-n" if platform.system().lower() == "windows" else "-c"
-
     command = ["ping", param, "1", host]
-    ping_response = subprocess.call(command, stdout=subprocess.DEVNULL)
 
-    if ping_response == 0:
-        return "1"
-    else:
-        return "0"
+    for i in range(3):
+        # Retry until pass, up to 3 times
+        ping_response = subprocess.call(command, stdout=subprocess.DEVNULL)
+
+        if ping_response == 0:
+            return "1"
+            break
+        else:
+            # If failed and on last attempt, return 0 (failed)
+            if i == 2:
+                return "0"
+            else:
+                # if not last attempt, sleep for random time between 1 and 3 seconds before trying again
+                sleep = random.uniform(1, 3)
+                time.sleep(sleep)
 
 
 def update_status(response):

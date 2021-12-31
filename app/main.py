@@ -38,8 +38,12 @@ if old_status == "":
 
 # Ping the target host and get response
 response = ping(target_host)
+print(response)
 
 if response == "1" and old_status == "1":
+    pass
+
+elif response == "0" and old_status == "0":
     pass
 
 elif response == "1" and old_status == "0":
@@ -47,9 +51,6 @@ elif response == "1" and old_status == "0":
     message = "✅ - The server is back online!"
     send_webhook(webhook_url, response, message, mention_role)
     update_status(response)
-
-elif response == "0" and old_status == "0":
-    pass
 
 elif response == "0" and old_status == "1":
     log.info(f"{target_host} status has been updated: ❌ - Sending to Discord...")
